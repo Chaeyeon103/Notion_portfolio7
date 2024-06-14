@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #timer {
+            color: #8ccdde;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.7em;
+            letter-spacing: 5px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .days, .hours {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        .days {
+            background: #2787a1;
+        }
+
+        .hours {
+            background: #2787a1;
+            color: #8ccdde;
+        }
+
+        .numbers {
+            font-family: 'Montserrat', sans-serif;
+            color: #8ccdde;
+            font-size: 4em;
+        }
+
+        .white {
+            position: absolute;
+            background: #eeeeee;
+            height: 85px;
+            width: 75px;
+            left: 30%;
+            top: 2%;
+        }
+
+        .red {
+            position: absolute;
+            background: #EF2F3C;
+            left: 18%;
+            top: 9%;
+            height: 65px;
+            width: 70px;
+        }
+
+        .blue {
+            position: absolute;
+            background: #276FBF;
+            height: 80px;
+            width: 80px;
+            left: 60%;
+            top: 5%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="timer">
+    <div class="days">
+        <div id="days" class="numbers"></div>days
+    </div>
+    <div class="hours">
+        <div id="hours" class="numbers"></div>hours
+    </div>
+</div>
+
+</body>
+<script>
+    const targetDate = new Date('Jun 15, 2025 00:00:00').getTime();
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+    }
+
+    setInterval(updateTimer, 1000); // Update the timer every 1 second
+    updateTimer(); // Initial call to display the timer immediately
+</script>
+</html>
